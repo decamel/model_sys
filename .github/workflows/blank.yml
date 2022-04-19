@@ -10,7 +10,7 @@ on: #trigger on push & PR to this branch only
 
 env:
   JAVA_VERSION: "12.x" #change this version if you want
-  FLUTTER_VERSION: "2.2.3" #set here your version
+  FLUTTER_VERSION: "2.10.5" #set here your version
   FLUTTER_CHANNEL: "stable" #set here your channel
 
 jobs:
