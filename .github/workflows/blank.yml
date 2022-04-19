@@ -49,7 +49,7 @@ jobs:
           git config --global user.name
           git config --global user.email
           git status
-          git remote add origin https://${{secrets.commit_secret}}@github.com/dessy4oko/model_sys.git #change to your path
+          git remote add origin https://dessy4oko:${{secrets.commit_secret}}@github.com/dessy4oko/model_sys.git #change to your path
           git checkout -b gh-pages
           git add --all
           git commit -m "update"
