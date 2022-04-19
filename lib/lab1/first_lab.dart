@@ -210,83 +210,97 @@ class FirstLabContent extends StatelessWidget {
                                   .add(CalculationRun(step));
                             },
                           ),
-                          const SizedBox(
-                            height: 20,
-                          ),
-                          ListTile(
-                            leading: const Text("Заданный шаг"),
-                            title:
-                                BlocBuilder<CalculationBloc, CalculationState>(
-                              builder: (context, state) => state.when(
-                                initial: () => const Text("Не задан"),
-                                processing: (error, hardness) =>
-                                    const Text("Производятся вычисления"),
-                                done: (
-                                  values,
-                                  initialStep,
-                                  resolvedStep,
-                                  hardness,
-                                  error,
-                                ) =>
-                                    Text("$initialStep"),
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            leading: const Text("Выбранный шаг"),
-                            title:
-                                BlocBuilder<CalculationBloc, CalculationState>(
-                              builder: (context, state) => state.when(
-                                initial: () => const Text("Не задан"),
-                                processing: (error, hardness) =>
-                                    const Text("Производятся вычисления"),
-                                done: (
-                                  values,
-                                  initialStep,
-                                  resolvedStep,
-                                  hardness,
-                                  error,
-                                ) =>
-                                    Text("$resolvedStep"),
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            leading: const Text("Значение X4"),
-                            title:
-                                BlocBuilder<CalculationBloc, CalculationState>(
-                              builder: (context, state) => state.when(
-                                initial: () => const Text("Неизвестно"),
-                                processing: (error, hardness) =>
-                                    const Text("Производятся вычисления"),
-                                done: (
-                                  values,
-                                  initialStep,
-                                  resolvedStep,
-                                  hardness,
-                                  error,
-                                ) =>
-                                    Text(values.last.x4.toStringAsFixed(6)),
-                              ),
-                            ),
-                          ),
-                          ListTile(
-                            leading: const Text("Погрешность"),
-                            title:
-                                BlocBuilder<CalculationBloc, CalculationState>(
-                              builder: (context, state) => state.when(
-                                initial: () => const Text("Неизвестно"),
-                                processing: (error, hardness) =>
-                                    const Text("Производятся вычисления"),
-                                done: (
-                                  values,
-                                  initialStep,
-                                  resolvedStep,
-                                  hardness,
-                                  error,
-                                ) =>
-                                    Text(error.last.error.toStringAsFixed(6)),
-                              ),
+                          SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ListTile(
+                                  leading: const Text("Заданный шаг"),
+                                  dense: true,
+                                  contentPadding: EdgeInsets.zero,
+                                  title: BlocBuilder<CalculationBloc,
+                                      CalculationState>(
+                                    builder: (context, state) => state.when(
+                                      initial: () => const Text("Не задан"),
+                                      processing: (error, hardness) =>
+                                          const Text("Производятся вычисления"),
+                                      done: (
+                                        values,
+                                        initialStep,
+                                        resolvedStep,
+                                        hardness,
+                                        error,
+                                      ) =>
+                                          Text("$initialStep"),
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  leading: const Text("Выбранный шаг"),
+                                  dense: true,
+                                  contentPadding: EdgeInsets.zero,
+                                  title: BlocBuilder<CalculationBloc,
+                                      CalculationState>(
+                                    builder: (context, state) => state.when(
+                                      initial: () => const Text("Не задан"),
+                                      processing: (error, hardness) =>
+                                          const Text("Производятся вычисления"),
+                                      done: (
+                                        values,
+                                        initialStep,
+                                        resolvedStep,
+                                        hardness,
+                                        error,
+                                      ) =>
+                                          Text("$resolvedStep"),
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  leading: const Text("Значение X4"),
+                                  dense: true,
+                                  contentPadding: EdgeInsets.zero,
+                                  title: BlocBuilder<CalculationBloc,
+                                      CalculationState>(
+                                    builder: (context, state) => state.when(
+                                      initial: () => const Text("Неизвестно"),
+                                      processing: (error, hardness) =>
+                                          const Text("Производятся вычисления"),
+                                      done: (
+                                        values,
+                                        initialStep,
+                                        resolvedStep,
+                                        hardness,
+                                        error,
+                                      ) =>
+                                          Text(values.last.x4
+                                              .toStringAsFixed(6)),
+                                    ),
+                                  ),
+                                ),
+                                ListTile(
+                                  leading: const Text("Погрешность"),
+                                  dense: true,
+                                  contentPadding: EdgeInsets.zero,
+                                  title: BlocBuilder<CalculationBloc,
+                                      CalculationState>(
+                                    builder: (context, state) => state.when(
+                                      initial: () => const Text("Неизвестно"),
+                                      processing: (error, hardness) =>
+                                          const Text("Производятся вычисления"),
+                                      done: (
+                                        values,
+                                        initialStep,
+                                        resolvedStep,
+                                        hardness,
+                                        error,
+                                      ) =>
+                                          Text(error.last.error
+                                              .toStringAsFixed(6)),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],

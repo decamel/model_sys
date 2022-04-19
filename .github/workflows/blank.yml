@@ -12,6 +12,7 @@ env:
   JAVA_VERSION: "12.x" #change this version if you want
   FLUTTER_VERSION: "2.10.5" #set here your version
   FLUTTER_CHANNEL: "stable" #set here your channel
+  FLUTTER_BASE_HREF: "/model_sys"
 
 jobs:
   build_web:
@@ -25,6 +26,7 @@ jobs:
           flutter-version: ${{env.FLUTTER_VERSION}}
       - run: |
           flutter pub get
+          flutter pub run build_runner build --delete-conflicting-ouputs
           flutter build web
   publish_ghPages:
     name: Publish GH Pages

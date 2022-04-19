@@ -368,45 +368,53 @@ class RulesList extends StatelessWidget {
                   ),
                 ),
               ),
-            for (var sig in (state.memorized).keys)
-              for (var rule in state.memorized[sig]!)
-                ListTile(
-                  title: Row(
-                    children: [
-                      Text(sig.name),
-                      const Icon(
-                        Icons.add,
-                        color: Colors.black12,
-                      ),
-                      Text(rule.from.name),
-                      const Icon(
-                        Icons.arrow_right_alt,
-                        color: Colors.black12,
-                      ),
-                      Text(rule.output.value),
-                      const Icon(
-                        Icons.arrow_right_alt_sharp,
-                        color: Colors.black12,
-                      ),
-                      Text(rule.to.name),
-                    ],
-                  ),
-                  trailing: TextButton(
-                    child: const Icon(
-                      Icons.remove_circle_outline,
-                      size: 16,
-                      color: Colors.black26,
-                    ),
-                    style: ButtonStyle(
-                      padding:
-                          MaterialStateProperty.all(const EdgeInsets.all(3)),
-                    ),
-                    onPressed: () {
-                      BlocProvider.of<RuleBloc>(context)
-                          .add(RuleEvent.remove(sig, rule));
-                    },
-                  ),
-                )
+            Expanded(
+              child: ListView(
+                shrinkWrap: true,
+                primary: false,
+                children: [
+                  for (var sig in (state.memorized).keys)
+                    for (var rule in state.memorized[sig]!)
+                      ListTile(
+                        title: Row(
+                          children: [
+                            Text(sig.name),
+                            const Icon(
+                              Icons.add,
+                              color: Colors.black12,
+                            ),
+                            Text(rule.from.name),
+                            const Icon(
+                              Icons.arrow_right_alt,
+                              color: Colors.black12,
+                            ),
+                            Text(rule.output.value),
+                            const Icon(
+                              Icons.arrow_right_alt_sharp,
+                              color: Colors.black12,
+                            ),
+                            Text(rule.to.name),
+                          ],
+                        ),
+                        trailing: TextButton(
+                          child: const Icon(
+                            Icons.remove_circle_outline,
+                            size: 16,
+                            color: Colors.black26,
+                          ),
+                          style: ButtonStyle(
+                            padding: MaterialStateProperty.all(
+                                const EdgeInsets.all(3)),
+                          ),
+                          onPressed: () {
+                            BlocProvider.of<RuleBloc>(context)
+                                .add(RuleEvent.remove(sig, rule));
+                          },
+                        ),
+                      )
+                ],
+              ),
+            ),
           ],
         );
       },
@@ -446,7 +454,8 @@ class RuleSideForm extends StatelessWidget {
         Flexible(
           child: GridView.count(
             crossAxisCount: 3,
-            childAspectRatio: .6,
+            childAspectRatio: .4,
+            reverse: true,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
