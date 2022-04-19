@@ -44,8 +44,8 @@ jobs:
           flutter build web --release
           cd build/web
           git init
-          git config --global user.email den_spb97@mail.ru #change to your e-mail
-          git config --global user.name dessy4oko #change to your user-name
+          git config --global user.email "den_spb97@mail.ru" #change to your e-mail
+          git config --global user.name "dessy4oko" #change to your user-name
           git status
           git remote add origin https://${{secrets.commit_secret}}@github.com/dessy4oko/model_sys.git #change to your path
           git checkout -b gh-pages

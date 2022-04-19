@@ -83,13 +83,15 @@ class _SecondLabState extends State<SecondLab> {
                           initialized: (history, signal) => Expanded(
                             child: ListView.builder(
                               primary: false,
+                              shrinkWrap: true,
                               itemCount: history.length,
                               itemBuilder: (context, index) {
                                 final item = history[index];
                                 return ListTile(
+                                  dense: true,
                                   title: Wrap(
                                     direction: Axis.horizontal,
-                                    spacing: 10,
+                                    spacing: 5,
                                     children: [
                                       const Text("Входной сигнал"),
                                       Text(
@@ -101,6 +103,7 @@ class _SecondLabState extends State<SecondLab> {
                                       const Icon(
                                         Icons.arrow_right_alt,
                                         color: Colors.black12,
+                                        size: 14,
                                       ),
                                       if (item.output == null)
                                         Text(
@@ -122,6 +125,7 @@ class _SecondLabState extends State<SecondLab> {
                                         const Icon(
                                           Icons.arrow_right_alt_sharp,
                                           color: Colors.black12,
+                                          size: 14,
                                         ),
                                         const Text("Новое состояние"),
                                         Text(
@@ -376,22 +380,27 @@ class RulesList extends StatelessWidget {
                   for (var sig in (state.memorized).keys)
                     for (var rule in state.memorized[sig]!)
                       ListTile(
-                        title: Row(
+                        dense: true,
+                        contentPadding: EdgeInsets.zero,
+                        title: Wrap(
                           children: [
                             Text(sig.name),
                             const Icon(
                               Icons.add,
                               color: Colors.black12,
+                              size: 14,
                             ),
                             Text(rule.from.name),
                             const Icon(
                               Icons.arrow_right_alt,
                               color: Colors.black12,
+                              size: 14,
                             ),
                             Text(rule.output.value),
                             const Icon(
                               Icons.arrow_right_alt_sharp,
                               color: Colors.black12,
+                              size: 14,
                             ),
                             Text(rule.to.name),
                           ],
@@ -452,10 +461,9 @@ class RuleSideForm extends StatelessWidget {
               orElse: () => const Text("")),
         ),
         Flexible(
-          child: GridView.count(
-            crossAxisCount: 3,
-            childAspectRatio: .4,
-            reverse: true,
+          child: ListView(
+            primary: false,
+            shrinkWrap: false,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -490,10 +498,6 @@ class RuleSideForm extends StatelessWidget {
                     },
                   ),
                 ],
-              ),
-              const Icon(
-                Icons.arrow_forward_outlined,
-                color: Colors.black12,
               ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -560,10 +564,6 @@ class RuleSideForm extends StatelessWidget {
                     },
                   ),
                 ],
-              ),
-              const Icon(
-                Icons.arrow_forward_outlined,
-                color: Colors.black12,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

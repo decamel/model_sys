@@ -44,7 +44,7 @@ class ThirdLab extends StatelessWidget {
                                 style: Theme.of(context).textTheme.headline6,
                               ),
                               const SizedBox(
-                                height: 20,
+                                height: 10,
                               ),
                               BlocBuilder<StatistBloc, StatistState>(
                                 builder: (context, state) {
@@ -101,6 +101,7 @@ class ThirdLab extends StatelessWidget {
                                 height: 20,
                               ),
                               ListTile(
+                                dense: true,
                                 tileColor: Colors.transparent,
                                 contentPadding: EdgeInsets.zero,
                                 leading: const Text(
@@ -123,6 +124,7 @@ class ThirdLab extends StatelessWidget {
                                 ),
                               ),
                               ListTile(
+                                dense: true,
                                 tileColor: Colors.transparent,
                                 contentPadding: EdgeInsets.zero,
                                 leading: const Text(
@@ -159,124 +161,147 @@ class ThirdLab extends StatelessWidget {
                                   "Эксперементальные значения",
                                   style: Theme.of(context).textTheme.headline6,
                                 ),
-                                ListTile(
-                                  tileColor: Colors.transparent,
-                                  contentPadding: EdgeInsets.zero,
-                                  leading: const Text(
-                                    "Мат. ожидание",
-                                  ),
-                                  title: BlocBuilder<StatistBloc, StatistState>(
-                                    builder: (context, state) {
-                                      return state.maybeWhen(
-                                        done: (
-                                          sequencePower,
-                                          selection,
-                                          histogram,
-                                        ) =>
-                                            Text(
-                                          histogram.expectation.toString(),
+                                Expanded(
+                                  child: ListView(
+                                    children: [
+                                      ListTile(
+                                        dense: true,
+                                        contentPadding: EdgeInsets.zero,
+                                        tileColor: Colors.transparent,
+                                        leading: const Text(
+                                          "Мат. ожидание",
                                         ),
-                                        orElse: () => const Text("Неизвестно"),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                ListTile(
-                                  tileColor: Colors.transparent,
-                                  contentPadding: EdgeInsets.zero,
-                                  leading: const Text(
-                                    "Дисперсия",
-                                  ),
-                                  title: BlocBuilder<StatistBloc, StatistState>(
-                                    builder: (context, state) {
-                                      return state.maybeWhen(
-                                        done: (
-                                          sequencePower,
-                                          selection,
-                                          histogram,
-                                        ) =>
-                                            Text(
-                                          histogram.dispersion.toString(),
+                                        title: BlocBuilder<StatistBloc,
+                                            StatistState>(
+                                          builder: (context, state) {
+                                            return state.maybeWhen(
+                                              done: (
+                                                sequencePower,
+                                                selection,
+                                                histogram,
+                                              ) =>
+                                                  Text(
+                                                histogram.expectation
+                                                    .toString(),
+                                              ),
+                                              orElse: () =>
+                                                  const Text("Неизвестно"),
+                                            );
+                                          },
                                         ),
-                                        orElse: () => const Text("Неизвестно"),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                ListTile(
-                                  tileColor: Colors.transparent,
-                                  contentPadding: EdgeInsets.zero,
-                                  leading: RichText(
-                                    text: TextSpan(
-                                      style:
-                                          Theme.of(context).textTheme.bodyText1,
-                                      children: const [
-                                        TextSpan(
-                                          text: "Величина меры расхождения X",
+                                      ),
+                                      ListTile(
+                                        dense: true,
+                                        tileColor: Colors.transparent,
+                                        contentPadding: EdgeInsets.zero,
+                                        leading: const Text(
+                                          "Дисперсия",
                                         ),
-                                        TextSpan(
-                                          text: "2",
-                                          style: TextStyle(
-                                            fontFeatures: [
-                                              FontFeature.enable('sups')
+                                        title: BlocBuilder<StatistBloc,
+                                            StatistState>(
+                                          builder: (context, state) {
+                                            return state.maybeWhen(
+                                              done: (
+                                                sequencePower,
+                                                selection,
+                                                histogram,
+                                              ) =>
+                                                  Text(
+                                                histogram.dispersion.toString(),
+                                              ),
+                                              orElse: () =>
+                                                  const Text("Неизвестно"),
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                      ListTile(
+                                        dense: true,
+                                        tileColor: Colors.transparent,
+                                        contentPadding: EdgeInsets.zero,
+                                        leading: RichText(
+                                          text: TextSpan(
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1,
+                                            children: const [
+                                              TextSpan(
+                                                text:
+                                                    "Величина меры расхождения X",
+                                              ),
+                                              TextSpan(
+                                                text: "2",
+                                                style: TextStyle(
+                                                  fontFeatures: [
+                                                    FontFeature.enable('sups')
+                                                  ],
+                                                ),
+                                              ),
                                             ],
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  title: BlocBuilder<StatistBloc, StatistState>(
-                                    builder: (context, state) {
-                                      return state.maybeWhen(
-                                        done: (
-                                          sequencePower,
-                                          selection,
-                                          histogram,
-                                        ) =>
-                                            Text(
-                                          histogram.xi.toString(),
+                                        title: BlocBuilder<StatistBloc,
+                                            StatistState>(
+                                          builder: (context, state) {
+                                            return state.maybeWhen(
+                                              done: (
+                                                sequencePower,
+                                                selection,
+                                                histogram,
+                                              ) =>
+                                                  Text(
+                                                histogram.xi.toString(),
+                                              ),
+                                              orElse: () =>
+                                                  const Text("Неизвестно"),
+                                            );
+                                          },
                                         ),
-                                        orElse: () => const Text("Неизвестно"),
-                                      );
-                                    },
-                                  ),
-                                ),
-                                ListTile(
-                                  tileColor: Colors.transparent,
-                                  contentPadding: EdgeInsets.zero,
-                                  leading: RichText(
-                                    text: TextSpan(
-                                      style:
-                                          Theme.of(context).textTheme.bodyText1,
-                                      children: const [
-                                        TextSpan(
-                                          text: "Значение распределения X",
-                                        ),
-                                        TextSpan(
-                                          text: "2",
-                                          style: TextStyle(
-                                            fontFeatures: [
-                                              FontFeature.enable('sups')
+                                      ),
+                                      ListTile(
+                                        dense: true,
+                                        tileColor: Colors.transparent,
+                                        contentPadding: EdgeInsets.zero,
+                                        leading: RichText(
+                                          text: TextSpan(
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyText1,
+                                            children: const [
+                                              TextSpan(
+                                                text:
+                                                    "Значение распределения X",
+                                              ),
+                                              TextSpan(
+                                                text: "2",
+                                                style: TextStyle(
+                                                  fontFeatures: [
+                                                    FontFeature.enable('sups')
+                                                  ],
+                                                ),
+                                              ),
                                             ],
                                           ),
                                         ),
-                                      ],
-                                    ),
-                                  ),
-                                  title: BlocBuilder<StatistBloc, StatistState>(
-                                    builder: (context, state) {
-                                      return state.maybeWhen(
-                                        done: (
-                                          sequencePower,
-                                          selection,
-                                          histogram,
-                                        ) =>
-                                            Text(
-                                          histogram.dXi.toString(),
+                                        title: BlocBuilder<StatistBloc,
+                                            StatistState>(
+                                          builder: (context, state) {
+                                            return state.maybeWhen(
+                                              done: (
+                                                sequencePower,
+                                                selection,
+                                                histogram,
+                                              ) =>
+                                                  Text(
+                                                histogram.dXi.toString(),
+                                              ),
+                                              orElse: () =>
+                                                  const Text("Неизвестно"),
+                                            );
+                                          },
                                         ),
-                                        orElse: () => const Text("Неизвестно"),
-                                      );
-                                    },
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 BlocBuilder<StatistBloc, StatistState>(
