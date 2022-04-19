@@ -3,8 +3,9 @@ part of 'rule_bloc.dart';
 @freezed
 class RuleState with _$RuleState {
   const RuleState._();
+
   const factory RuleState.editing({
-    @Default({}) Map<AutomatoSignal, List<AutomatoRule>> memorized,
+    required Map<AutomatoSignal, List<AutomatoRule>> memorized,
     AutomatoSignal? signal,
     AutomatoOutput? output,
     AutomatoState? current,
@@ -12,7 +13,7 @@ class RuleState with _$RuleState {
   }) = _Editing;
 
   const factory RuleState.success({
-    @Default({}) Map<AutomatoSignal, List<AutomatoRule>> memorized,
+    required Map<AutomatoSignal, List<AutomatoRule>> memorized,
     AutomatoSignal? signal,
     AutomatoOutput? output,
     AutomatoState? current,
@@ -20,7 +21,7 @@ class RuleState with _$RuleState {
   }) = _Success;
 
   const factory RuleState.error({
-    @Default({}) Map<AutomatoSignal, List<AutomatoRule>> memorized,
+    required Map<AutomatoSignal, List<AutomatoRule>> memorized,
     AutomatoSignal? signal,
     AutomatoOutput? output,
     AutomatoState? current,
@@ -37,7 +38,7 @@ class RuleState with _$RuleState {
     if (memorized.isEmpty) {
       return true;
     }
-    if (!memorized.containsKey(signal)) {
+    if (!(memorized.containsKey(signal))) {
       return true;
     }
     if (memorized[signal]!.indexWhere((element) => element.from == current) ==
@@ -60,7 +61,7 @@ class RuleState with _$RuleState {
       }
       return true;
     }
-    if (!memorized.containsKey(signal)) {
+    if (!(memorized.containsKey(signal))) {
       if (kDebugMode) {
         print("There is no data with this signal");
       }

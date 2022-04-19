@@ -368,7 +368,7 @@ class RulesList extends StatelessWidget {
                   ),
                 ),
               ),
-            for (var sig in state.memorized.keys)
+            for (var sig in (state.memorized).keys)
               for (var rule in state.memorized[sig]!)
                 ListTile(
                   title: Row(

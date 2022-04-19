@@ -8,7 +8,7 @@ part 'rule_state.dart';
 part 'rule_bloc.freezed.dart';
 
 class RuleBloc extends Bloc<RuleEvent, RuleState> {
-  RuleBloc() : super(const _Editing()) {
+  RuleBloc() : super(const _Editing(memorized: {})) {
     on<_StateSelected>(_stateSelected);
     on<_OutputSelected>(_outputSelected);
     on<_SignalSelected>(_signalSelected);
@@ -121,7 +121,7 @@ class RuleBloc extends Bloc<RuleEvent, RuleState> {
     List<AutomatoRule> rules = [];
 
     if (state.memorized.keys.contains(rule.signal)) {
-      rules = state.memorized[rule.signal]!;
+      rules = state.memorized[rule.signal] ?? [];
     }
 
     rules = [...rules, rule];
@@ -143,6 +143,6 @@ class RuleBloc extends Bloc<RuleEvent, RuleState> {
   }
 
   Future _reset(_Reset event, Emitter<RuleState> emit) async {
-    emit(const RuleState.editing());
+    emit(const RuleState.editing(memorized: {}));
   }
 }
