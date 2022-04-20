@@ -5,6 +5,7 @@ import 'package:modeling/lab3/third_lab.dart';
 import 'package:modeling/lab4/fourth_lab.dart';
 import 'package:modeling/lab5/fith_lab.dart';
 import 'package:modeling/lab6/sixth_lab.dart';
+import 'package:modeling/lab7/seventh_lab.dart';
 import 'package:modeling/theme.dart';
 
 void main() {
@@ -118,6 +119,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 );
               },
               child: const Text("Лабораторная работа №6"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const SeventhLab();
+                    },
+                  ),
+                );
+              },
+              child: const Text("Лабораторная работа №7"),
             ),
           ],
         ),
