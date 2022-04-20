@@ -143,12 +143,8 @@ class Histogram {
     double freq = 0;
     for (var slice in bounds) {
       dispersion += slice.frequency * pow(slice.average - expectation, 2);
-      freq = revert(slice.right, slice.left, slice.average);
-      if (freq > slice.frequency) {
-        xi += pow(freq - slice.frequency, 2) / freq;
-      } else {
-        xi += pow(slice.frequency - freq, 2) / freq;
-      }
+      freq = revert(slice.left, slice.right, slice.average);
+      xi += pow(slice.frequency - freq, 2) / freq;
     }
 
     xi *= _selection.power;

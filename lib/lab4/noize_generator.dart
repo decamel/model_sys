@@ -15,7 +15,7 @@ abstract class NoizeGenerator {
     double v1 = 0;
     double v2 = 0;
     double s = 2;
-    for (var i = 0; i < amount - 1; i++) {
+    for (var i = 0; i < amount - 2; i += 2) {
       do {
         v1 = random.nextDouble() * 2 - 1;
         v2 = random.nextDouble() * 2 - 1;
