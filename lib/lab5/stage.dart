@@ -37,11 +37,17 @@ class Stage extends StatelessWidget {
                       primaryXAxis: NumericAxis(),
                       primaryYAxis: NumericAxis(),
                       // Enable legend
-                      legend: Legend(isVisible: false),
+                      legend: Legend(
+                        isVisible: true,
+                        isResponsive: true,
+                        position: LegendPosition.bottom,
+                        alignment: ChartAlignment.far,
+                      ),
                       // Enable tooltip
                       tooltipBehavior: TooltipBehavior(enable: true),
                       series: <ColumnSeries<Bounds, double>>[
                         ColumnSeries<Bounds, double>(
+                          name: "Экспериментальная",
                           enableTooltip: true,
                           markerSettings: const MarkerSettings(
                             isVisible: true,
@@ -49,19 +55,22 @@ class Stage extends StatelessWidget {
                             height: 3,
                             borderWidth: 1,
                           ),
+                          color: Colors.yellow,
                           dataSource: stats.histogram.bounds,
                           xValueMapper: (value, index) =>
-                              stats.histogram.step * index + range[0],
+                              stats.histogram.step * index +
+                              stats.histogram.bounds.first.left,
                           yValueMapper: (value, index) => value.frequency,
                           xAxisName: "X",
                           yAxisName: "Y",
                           // Enable data label
                           dataLabelSettings: const DataLabelSettings(
-                            isVisible: true,
+                            isVisible: false,
                           ),
                         ),
                         ColumnSeries<Bounds, double>(
-                          enableTooltip: true,
+                          name: "Теоретическая",
+                          enableTooltip: false,
                           markerSettings: const MarkerSettings(
                             isVisible: true,
                             width: 3,
@@ -70,7 +79,8 @@ class Stage extends StatelessWidget {
                           ),
                           dataSource: stats.histogram.bounds,
                           xValueMapper: (value, index) =>
-                              stats.histogram.step * index + range[0],
+                              stats.histogram.step * index +
+                              stats.histogram.bounds.first.left,
                           yValueMapper: (value, index) =>
                               stats.histogram.revert(
                             value.left,
@@ -81,7 +91,7 @@ class Stage extends StatelessWidget {
                           yAxisName: "Y",
                           // Enable data label
                           dataLabelSettings: const DataLabelSettings(
-                            isVisible: true,
+                            isVisible: false,
                           ),
                         ),
                       ],
@@ -92,21 +102,26 @@ class Stage extends StatelessWidget {
                       primaryXAxis: NumericAxis(),
                       primaryYAxis: NumericAxis(),
                       // Enable tooltip
-                      tooltipBehavior: TooltipBehavior(enable: false),
+                      tooltipBehavior: TooltipBehavior(enable: true),
                       // Enable legend
                       legend: Legend(
-                        isVisible: false,
+                        isVisible: true,
+                        isResponsive: true,
+                        position: LegendPosition.bottom,
+                        alignment: ChartAlignment.far,
                       ),
                       series: <XyDataSeries>[
                         FastLineSeries(
+                          name: "Теоретическая",
                           dataSource: stats.theory,
-                          color: Colors.blue,
+                          color: Colors.red,
                           xValueMapper: (value, index) => index * stats.step,
                           yValueMapper: (value, index) => value,
                         ),
                         FastLineSeries(
+                          name: "Экспериментальная",
                           dataSource: stats.corelation,
-                          color: Colors.yellow,
+                          color: Colors.blue,
                           xValueMapper: (value, index) => index * stats.step,
                           yValueMapper: (value, index) => value,
                         ),

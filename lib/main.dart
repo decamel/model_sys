@@ -3,7 +3,7 @@ import 'package:modeling/lab1/first_lab.dart';
 import 'package:modeling/lab2/second_lab.dart';
 import 'package:modeling/lab3/third_lab.dart';
 import 'package:modeling/lab4/fourth_lab.dart';
-// import 'package:modeling/lab5/FithLab.dart';
+import 'package:modeling/lab5/fith_lab.dart';
 import 'package:modeling/theme.dart';
 
 void main() {
@@ -94,18 +94,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 child: const Text("Лабораторная работа №4"),
               ),
-              // TextButton(
-              //   onPressed: () {
-              //     Navigator.of(context).push(
-              //       MaterialPageRoute(
-              //         builder: (context) {
-              //           return const FithLab();
-              //         },
-              //       ),
-              //     );
-              //   },
-              //   child: const Text("Лабораторная работа №5"),
-              // ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return const FithLab();
+                      },
+                    ),
+                  );
+                },
+                child: const Text("Лабораторная работа №5"),
+              ),
             ],
           ),
         ));

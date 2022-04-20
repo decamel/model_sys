@@ -167,8 +167,8 @@ typedef SelectionTransformF = double Function(double);
 
 class Selection {
   final List<double> _sequence;
-  double _min;
-  double _max;
+  late double _min;
+  late double _max;
 
   double? _expectation;
   double? _dispersion;
@@ -187,7 +187,9 @@ class Selection {
         _average = average,
         _dispersion = dispersion,
         _expectation = expectation,
-        assert(_sequence.isNotEmpty);
+        assert(_sequence.isNotEmpty) {
+    _minax();
+  }
 
   Selection transform(SelectionTransformF tF) {
     final List<double> newSequence = [];
@@ -249,23 +251,17 @@ class Selection {
 
   /// Минимальный элемент выборки
   double get min {
-    if (_min != double.infinity) {
-      return _min;
-    }
-    _minax();
     return _min;
   }
 
   /// Максимальный элемент выборки
   double get max {
-    if (_max != double.negativeInfinity) {
-      return _max;
-    }
-    _minax();
     return _max;
   }
 
   _minax() {
+    _min = _sequence[0];
+    _max = _sequence[0];
     for (var item in _sequence) {
       if (_min > item) {
         _min = item;

@@ -35,17 +35,20 @@ class EluvateBloc extends Bloc<EluvateEvent, EluvateState> {
     final normalizedHistogram = Histogram.from(
       normalizedSelection,
       lawNormalR,
+      [normalizedSelection.min, normalizedSelection.max],
+    );
+    final normalizedTheory = Filter.theoryCorelation(
+      1,
+      normalizedCorelationF,
       bounds,
     );
-    final normalizedTheory =
-        Filter.theoryCorelation(1, normalizedCorelationF, bounds);
     final normalizedCorelation = Filter.corelation(normalizedSelection, bounds);
 
     final filteredSelection = Filter.generate(reducedFilterF, normalized);
     final filteredHistogram = Histogram.from(
       filteredSelection,
       lawFilteredR,
-      bounds,
+      [filteredSelection.min, filteredSelection.max],
       12,
     );
     final filteredTheory = Filter.theoryCorelation(
@@ -56,7 +59,7 @@ class EluvateBloc extends Bloc<EluvateEvent, EluvateState> {
     final nonlinedHistogram = Histogram.from(
       nonlinedSelection,
       lawNonlineR,
-      bounds,
+      [nonlinedSelection.min, nonlinedSelection.max],
       12,
     );
     final nonlinedTheory = Filter.theoryCorelation(
@@ -67,7 +70,7 @@ class EluvateBloc extends Bloc<EluvateEvent, EluvateState> {
     final targetHistogram = Histogram.from(
       targetSelection,
       lawTargetR,
-      bounds,
+      [targetSelection.min, targetSelection.max],
       12,
     );
     final targetTheory = Filter.theoryCorelation(
