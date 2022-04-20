@@ -104,7 +104,7 @@ class Histogram {
   });
 
   factory Histogram.from(Selection selection, RevertF revert, List<num> range,
-      [int? reduce]) {
+      {int? reduce, bool? otherStep}) {
     final bounds = <Bounds>[];
 
     double expectation = 0;
@@ -144,14 +144,18 @@ class Histogram {
     for (var slice in bounds) {
       dispersion += slice.frequency * pow(slice.average - expectation, 2);
       freq = revert(slice.left, slice.right, slice.average);
-      xi += pow(slice.frequency - freq, 2) / freq;
+      if (slice.frequency <= freq) {
+        xi += pow(freq - slice.frequency, 2) / freq;
+      } else {
+        xi += pow(slice.frequency - freq, 2) / freq;
+      }
     }
 
     xi *= _selection.power;
     final freedom = slicesCount - 1;
     return Histogram._(
       bounds,
-      step: 1 / slicesCount,
+      step: otherStep ?? false ? inc : 1 / slicesCount,
       expectation: expectation,
       dispersion: dispersion,
       slicesCount: slicesCount,

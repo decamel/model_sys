@@ -19,12 +19,10 @@ class FithLab extends StatelessWidget {
             padding: EdgeInsets.zero,
             tabs: [
               Tab(
-                height: 20,
                 icon: Icon(Icons.area_chart),
                 text: "Графики результатов",
               ),
               Tab(
-                height: 20,
                 icon: Icon(Icons.bar_chart_sharp),
                 text: "График белого шума",
               ),

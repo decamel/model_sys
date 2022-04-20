@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:modeling/lab3/generator.dart';
-import 'package:modeling/lab5/StatsJoin.dart';
+import 'package:modeling/lab5/stats_join.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Stage extends StatelessWidget {
@@ -45,7 +45,7 @@ class Stage extends StatelessWidget {
                       ),
                       // Enable tooltip
                       tooltipBehavior: TooltipBehavior(enable: true),
-                      series: <ColumnSeries<Bounds, double>>[
+                      series: <XyDataSeries<Bounds, double>>[
                         ColumnSeries<Bounds, double>(
                           name: "Экспериментальная",
                           enableTooltip: true,
@@ -55,7 +55,7 @@ class Stage extends StatelessWidget {
                             height: 3,
                             borderWidth: 1,
                           ),
-                          color: Colors.yellow,
+                          color: Colors.red,
                           dataSource: stats.histogram.bounds,
                           xValueMapper: (value, index) =>
                               stats.histogram.step * index +
@@ -68,15 +68,16 @@ class Stage extends StatelessWidget {
                             isVisible: false,
                           ),
                         ),
-                        ColumnSeries<Bounds, double>(
+                        FastLineSeries<Bounds, double>(
                           name: "Теоретическая",
-                          enableTooltip: false,
+                          enableTooltip: true,
                           markerSettings: const MarkerSettings(
                             isVisible: true,
                             width: 3,
                             height: 3,
                             borderWidth: 1,
                           ),
+                          color: Colors.blue,
                           dataSource: stats.histogram.bounds,
                           xValueMapper: (value, index) =>
                               stats.histogram.step * index +

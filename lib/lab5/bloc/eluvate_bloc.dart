@@ -4,7 +4,7 @@ import 'package:modeling/lab3/constants.dart';
 import 'package:modeling/lab3/generator.dart';
 import 'package:modeling/lab4/filter.dart';
 import 'package:modeling/lab4/noize_generator.dart';
-import 'package:modeling/lab5/StatsJoin.dart';
+import 'package:modeling/lab5/stats_join.dart';
 import 'package:modeling/lab4/constants.dart' as predefined;
 import 'package:modeling/lab5/func.dart';
 
@@ -49,7 +49,7 @@ class EluvateBloc extends Bloc<EluvateEvent, EluvateState> {
       filteredSelection,
       lawFilteredR,
       [filteredSelection.min, filteredSelection.max],
-      12,
+      reduce: 12,
     );
     final filteredTheory = Filter.theoryCorelation(
         filteredSelection.dispersion, reducedCorelationF, bounds);
@@ -60,7 +60,8 @@ class EluvateBloc extends Bloc<EluvateEvent, EluvateState> {
       nonlinedSelection,
       lawNonlineR,
       [nonlinedSelection.min, nonlinedSelection.max],
-      12,
+      reduce: 12,
+      otherStep: true,
     );
     final nonlinedTheory = Filter.theoryCorelation(
         nonlinedSelection.dispersion, reducedCorelationF, bounds);
@@ -71,7 +72,8 @@ class EluvateBloc extends Bloc<EluvateEvent, EluvateState> {
       targetSelection,
       lawTargetR,
       [targetSelection.min, targetSelection.max],
-      12,
+      reduce: 12,
+      otherStep: true,
     );
     final targetTheory = Filter.theoryCorelation(
         targetSelection.dispersion, reducedCorelationF, bounds);

@@ -27,7 +27,7 @@ class StatistBloc extends Bloc<StatistEvent, StatistState> {
     emit(StatistState.executed(sequencePower: state.sequencePower));
     generator.setSequencePower(state.sequencePower);
     final selection = generator.generate(lawFx);
-    final histogram = Histogram.from(selection, lawFxR, range);
+    final histogram = Histogram.from(selection, lawFxR, range, otherStep: true);
 
     emit(
       StatistState.done(
