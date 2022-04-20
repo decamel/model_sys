@@ -4,6 +4,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modeling/lab3/bloc/statist_bloc.dart';
+import 'package:modeling/lab3/constants.dart';
 import 'package:modeling/lab3/generator.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -384,10 +385,8 @@ class ThirdLab extends StatelessWidget {
                                     dataSource: histogram.bounds,
                                     xValueMapper: (value, index) =>
                                         histogram.step * index + range[0],
-                                    yValueMapper: (value, index) =>
-                                        (2 * value.right - 2) /
-                                            (value.right + 1) -
-                                        (2 * value.left - 2) / (value.left + 1),
+                                    yValueMapper: (value, index) => lawFxR(
+                                        value.left, value.right, value.average),
                                     markerSettings: const MarkerSettings(
                                       isVisible: true,
                                       width: 3,

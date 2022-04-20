@@ -37,6 +37,7 @@ const List<double> xiTable = [
 ];
 
 typedef GeneratorSpreadF = double Function(double);
+typedef RevertF = double Function(double, double, double);
 
 class Bounds {
   final double left;
@@ -88,6 +89,7 @@ class Histogram {
   double xi;
   int freedom;
   double dXi;
+  RevertF revert;
 
   Histogram._(
     this.bounds, {
@@ -98,27 +100,42 @@ class Histogram {
     required this.xi,
     required this.freedom,
     required this.dXi,
+    required this.revert,
   });
 
-  factory Histogram.from(Selection selection) {
+  factory Histogram.from(Selection selection, RevertF revert, List<num> range,
+      [int? reduce]) {
     final bounds = <Bounds>[];
 
     double expectation = 0;
     double dispersion = 0;
     double xi = 0;
+    var _selection = selection.copy();
+    if (reduce != null) {
+      final newSelection = <double>[];
+      final newLen = _selection.power / reduce;
+      for (var i = 0; i < newLen; i++) {
+        newSelection.add(_selection.sequence[i * reduce]);
+      }
+      _selection = Selection(newSelection);
+    }
 
     final int slicesCount =
-        selection.power <= 500 ? (selection.power / 15).round() : 25;
+        _selection.power <= 500 ? (_selection.power / 15).round() : 25;
 
-    final inc = selection.size / slicesCount;
+    final inc = _selection.size / slicesCount;
 
     double border = range[0].toDouble();
 
     for (var i = 0; i < slicesCount; i++) {
-      bounds.add(Bounds(border, () {
-        border += inc;
-        return border;
-      }(), selection.sequence));
+      bounds.add(Bounds(
+        border,
+        () {
+          border += inc;
+          return border;
+        }(),
+        _selection.sequence,
+      ));
     }
     for (var slice in bounds) {
       expectation += slice.average * slice.frequency;
@@ -126,8 +143,7 @@ class Histogram {
     double freq = 0;
     for (var slice in bounds) {
       dispersion += slice.frequency * pow(slice.average - expectation, 2);
-      freq = (2 * slice.right - 2) / (slice.right + 1) -
-          (2 * slice.left - 2) / (slice.left + 1);
+      freq = revert(slice.right, slice.left, slice.average);
       if (freq > slice.frequency) {
         xi += pow(freq - slice.frequency, 2) / freq;
       } else {
@@ -135,7 +151,7 @@ class Histogram {
       }
     }
 
-    xi *= selection.power;
+    xi *= _selection.power;
     final freedom = slicesCount - 1;
     return Histogram._(
       bounds,
@@ -146,9 +162,12 @@ class Histogram {
       xi: xi,
       freedom: freedom,
       dXi: xiTable[freedom],
+      revert: revert,
     );
   }
 }
+
+typedef SelectionTransformF = double Function(double);
 
 class Selection {
   final List<double> _sequence;
@@ -173,6 +192,14 @@ class Selection {
         _dispersion = dispersion,
         _expectation = expectation,
         assert(_sequence.isNotEmpty);
+
+  Selection transform(SelectionTransformF tF) {
+    final List<double> newSequence = [];
+    for (double item in _sequence) {
+      newSequence.add(tF(item));
+    }
+    return Selection(newSequence);
+  }
 
   // Объем выборки
   int get power => _sequence.length;
@@ -252,6 +279,8 @@ class Selection {
       }
     }
   }
+
+  Selection copy() => Selection(_sequence);
 }
 
 class Generator {
