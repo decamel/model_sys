@@ -207,7 +207,7 @@ class StepController extends StatelessWidget {
                       );
                     },
                     isSelected: Automato.signals
-                        .map(
+                        .map<bool>(
                           (e) => state.maybeWhen<bool>(
                             initial: (initialState, signal) => signal == e,
                             initialized: (history, signal) => signal == e,

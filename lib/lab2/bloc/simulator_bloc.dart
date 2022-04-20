@@ -19,7 +19,9 @@ class SimulatorBloc extends Bloc<SimulatorEvent, SimulatorState> {
   }
 
   Future _initialStateChanged(
-      _InitialStateChanged event, Emitter<SimulatorState> emit) async {
+    _InitialStateChanged event,
+    Emitter<SimulatorState> emit,
+  ) async {
     automato.state = event.st;
     emit(SimulatorState.initial(event.st));
   }

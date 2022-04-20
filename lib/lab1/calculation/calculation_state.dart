@@ -1,7 +1,7 @@
 part of 'calculation_bloc.dart';
 
 @freezed
-abstract class CalculationState with _$CalculationState {
+class CalculationState with _$CalculationState {
   factory CalculationState.initial() = _Initial;
 
   factory CalculationState.processing(

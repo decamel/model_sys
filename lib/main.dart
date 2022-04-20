@@ -4,6 +4,7 @@ import 'package:modeling/lab2/second_lab.dart';
 import 'package:modeling/lab3/third_lab.dart';
 import 'package:modeling/lab4/fourth_lab.dart';
 import 'package:modeling/lab5/fith_lab.dart';
+import 'package:modeling/lab6/sixth_lab.dart';
 import 'package:modeling/theme.dart';
 
 void main() {
@@ -39,75 +40,88 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(30),
+        child: Column(
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const FirstLab();
+                    },
+                  ),
+                );
+              },
+              child: const Text("Лабораторная работа №1"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const SecondLab();
+                    },
+                  ),
+                );
+              },
+              child: const Text("Лабораторная работа №2"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const ThirdLab();
+                    },
+                  ),
+                );
+              },
+              child: const Text("Лабораторная работа №3"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const FourthLab();
+                    },
+                  ),
+                );
+              },
+              child: const Text("Лабораторная работа №4"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const FithLab();
+                    },
+                  ),
+                );
+              },
+              child: const Text("Лабораторная работа №5"),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return const SixthLab();
+                    },
+                  ),
+                );
+              },
+              child: const Text("Лабораторная работа №6"),
+            ),
+          ],
         ),
-        body: Container(
-          padding: const EdgeInsets.all(30),
-          child: Column(
-            children: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const FirstLab();
-                      },
-                    ),
-                  );
-                },
-                child: const Text("Лабораторная работа №1"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const SecondLab();
-                      },
-                    ),
-                  );
-                },
-                child: const Text("Лабораторная работа №2"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const ThirdLab();
-                      },
-                    ),
-                  );
-                },
-                child: const Text("Лабораторная работа №3"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const FourthLab();
-                      },
-                    ),
-                  );
-                },
-                child: const Text("Лабораторная работа №4"),
-              ),
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return const FithLab();
-                      },
-                    ),
-                  );
-                },
-                child: const Text("Лабораторная работа №5"),
-              ),
-            ],
-          ),
-        ));
+      ),
+    );
   }
 }
