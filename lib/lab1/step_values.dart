@@ -69,7 +69,7 @@ class StepValues {
   }
 
   factory StepValues.next(StepValues previous, double t, double h) {
-    const control = m - u * T;
+    final control = m - u * t;
     final x1 = _x1Calculation(previous, h, control: control);
     final x2 = _x2Calculation(previous, h, control: control);
     final x3 = _x3Calculation(previous, h, control: control);

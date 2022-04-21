@@ -496,8 +496,8 @@ class VariableChart<T> extends StatelessWidget {
         legend: Legend(isVisible: false),
         // Enable tooltip
         tooltipBehavior: TooltipBehavior(enable: true),
-        series: <LineSeries<T, String>>[
-          LineSeries<T, String>(
+        series: <XyDataSeries<T, String>>[
+          FastLineSeries<T, String>(
             enableTooltip: true,
             legendItemText: title,
             markerSettings: const MarkerSettings(

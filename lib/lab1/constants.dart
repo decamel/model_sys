@@ -11,4 +11,4 @@ const g = 9.8;
 
 const allowedError = 1;
 
-const calculationRange = <double>[0, 10];
+const calculationRange = <double>[0, 14];

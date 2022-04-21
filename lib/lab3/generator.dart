@@ -123,7 +123,7 @@ class Histogram {
     final int slicesCount =
         _selection.power <= 500 ? (_selection.power / 15).round() : 25;
 
-    final inc = _selection.size / slicesCount;
+    final inc = (range[1] - range[0]) / slicesCount;
 
     double border = range[0].toDouble();
 

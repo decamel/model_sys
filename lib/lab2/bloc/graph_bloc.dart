@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:graphview/GraphView.dart';
-import 'package:modeling/lab2/automato.dart';
 
 part 'graph_event.dart';
 part 'graph_state.dart';
