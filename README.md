@@ -1,7 +1,9 @@
 # modeling
 
-This is my university project written with flutter which contains labs about Computer System Modeling things
-It do not contains any very usefull comments. You could check results at https://dessy4oko.github.io/model_sys/#/
+This is my university project written with flutter which contains labs about Computer System Modeling things.
+It do not contains any very usefull comments. 
+
+You could check results at https://dessy4oko.github.io/model_sys/#/
 
 ## Lab 1
 
